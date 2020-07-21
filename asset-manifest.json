@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/simple-loan-calculator/static/css/main.6c7ca0c4.chunk.css",
+    "main.js": "/simple-loan-calculator/static/js/main.306218b2.chunk.js",
+    "main.js.map": "/simple-loan-calculator/static/js/main.306218b2.chunk.js.map",
+    "runtime-main.js": "/simple-loan-calculator/static/js/runtime-main.d6149095.js",
+    "runtime-main.js.map": "/simple-loan-calculator/static/js/runtime-main.d6149095.js.map",
+    "static/js/2.b7e9d6e0.chunk.js": "/simple-loan-calculator/static/js/2.b7e9d6e0.chunk.js",
+    "static/js/2.b7e9d6e0.chunk.js.map": "/simple-loan-calculator/static/js/2.b7e9d6e0.chunk.js.map",
+    "index.html": "/simple-loan-calculator/index.html",
+    "precache-manifest.e6d7f4690b8517c7126a4d273ab572ba.js": "/simple-loan-calculator/precache-manifest.e6d7f4690b8517c7126a4d273ab572ba.js",
+    "service-worker.js": "/simple-loan-calculator/service-worker.js",
+    "static/css/main.6c7ca0c4.chunk.css.map": "/simple-loan-calculator/static/css/main.6c7ca0c4.chunk.css.map",
+    "static/js/2.b7e9d6e0.chunk.js.LICENSE.txt": "/simple-loan-calculator/static/js/2.b7e9d6e0.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d6149095.js",
+    "static/js/2.b7e9d6e0.chunk.js",
+    "static/css/main.6c7ca0c4.chunk.css",
+    "static/js/main.306218b2.chunk.js"
+  ]
+}
