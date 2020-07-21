@@ -1,46 +1,114 @@
 import React, { PureComponent } from 'react';
 import './LoanCalculator.css';
+import { CURRENCY, INTEREST_RATE } from './constants';
+import { getAnnualPeriodOptions, calculateMonthlyPayment } from './utils';
 
-const currency = '$';
-
-const periodOptions = [
-  { name: 1, value: 12 },
-  { name: 2, value: 24 },
-  { name: 3, value: 36 },
-];
+const annualPeriodOptions = getAnnualPeriodOptions(1, 6);
 
 export class LoanCalculator extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    const [firstPeriodOption] = annualPeriodOptions;
+    const { value: periodInMonths } = firstPeriodOption;
+
+    this.state = {
+      loanAmountInput: '0',
+      loanAmount: 0,
+      downPaymentInput: '0',
+      downPayment: 0,
+      interestRate: INTEREST_RATE,
+      periodInMonths,
+    };
+
+    this.onLoanAmountChange = this.getOnInputChange('loanAmount');
+    this.onDownPaymentChange = this.getOnInputChange('downPayment');
+  }
+
+  getOnInputChange = (propertyName) => (e) => {
+    const { value, valueAsNumber, validity } = e.target;
+
+    this.setState({
+      [propertyName]: validity.valid ? valueAsNumber : NaN,
+      [`${propertyName}Input`]: value,
+    });
+  };
+
+  onPeriodChange = (e) => {
+    const { value } = e.target;
+    this.setState({ periodInMonths: value });
+  };
+
   render() {
+    const {
+      loanAmount,
+      loanAmountInput,
+      downPayment,
+      downPaymentInput,
+      interestRate,
+      periodInMonths,
+    } = this.state;
+    const monthlyPayment = calculateMonthlyPayment(
+      loanAmount,
+      downPayment,
+      interestRate,
+      periodInMonths
+    );
+
     return (
       <div className="loan-calculator">
         <h1>Loan Calculator</h1>
+
         <div className="loan-calculator__field">
-          <label for="loanAmount">Loan Amount: </label>
-          <input name="loanAmount" type="number" min={0} required />
-          <span> {currency}</span>
+          <label htmlFor="loanAmount">Loan Amount: </label>
+          <input
+            name="loanAmount"
+            type="number"
+            min={0}
+            step="any"
+            value={loanAmountInput}
+            onChange={this.onLoanAmountChange}
+            required
+          />
+          <span> {CURRENCY}</span>
         </div>
+
         <div className="loan-calculator__field">
-          <label for="downPayment">Down Payment: </label>
-          <input name="downPayment" type="number" min={0} max={100} required />
+          <label htmlFor="downPayment">Down Payment: </label>
+          <input
+            name="downPayment"
+            type="number"
+            min={0}
+            max={100}
+            step="any"
+            value={downPaymentInput}
+            onChange={this.onDownPaymentChange}
+            required
+          />
           <span> %</span>
         </div>
+
         <div className="loan-calculator__field">
-          <label for="interest">Interest Rate: </label>
-          <input name="interest" type="number" value="1.5" disabled />
+          <label htmlFor="interest">Interest Rate: </label>
+          <input name="interest" type="number" value={interestRate} readOnly disabled />
           <span> %</span>
         </div>
+
         <div className="loan-calculator__field">
-          <label for="period">Period: </label>
-          <select name="period">
-            {periodOptions.map(({ name, value }) => (
-              <option value={value}>{name}</option>
+          <label htmlFor="period">Period: </label>
+          <select name="period" value={periodInMonths} onChange={this.onPeriodChange}>
+            {annualPeriodOptions.map(({ name, value }) => (
+              <option key={value} value={value}>
+                {name}
+              </option>
             ))}
           </select>
           <span> years</span>
         </div>
-        <div className="loan-calculator__field">
+
+        <div className="loan-calculator__result">
           <span>Monthly Payment: </span>
-          <b>{`${100} ${currency}`}</b>
+          <b>{`${isNaN(monthlyPayment) ? '---' : Math.round(monthlyPayment)} ${CURRENCY}`}</b>
         </div>
       </div>
     );

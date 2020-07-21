@@ -1,7 +1,16 @@
 .loan-calculator {
+  max-width: 500px;
   margin: 30px;
 }
 
-.loan-calculator__field {
+.loan-calculator__field,
+.loan-calculator__result {
+  box-sizing: border-box;
+  width: 100%;
   padding: 10px;
+}
+
+input:invalid {
+  background-color: #f16b55;
+  color: #ffffff;
 }
