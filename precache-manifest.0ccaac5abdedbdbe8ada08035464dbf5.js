@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f7e7579b259d5d86dd4a1ce73ad3382c",
+    "revision": "189f73f74b1112911e938c8d68200a34",
     "url": "/simple-loan-calculator/index.html"
   },
   {
-    "revision": "ab37459915ff7d05837a",
+    "revision": "b610361616ad20f5b1cb",
     "url": "/simple-loan-calculator/static/css/main.6c7ca0c4.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/simple-loan-calculator/static/js/2.b7e9d6e0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ab37459915ff7d05837a",
-    "url": "/simple-loan-calculator/static/js/main.306218b2.chunk.js"
+    "revision": "b610361616ad20f5b1cb",
+    "url": "/simple-loan-calculator/static/js/main.62ec199f.chunk.js"
   },
   {
     "revision": "351f8e34094f94adb3f7",
