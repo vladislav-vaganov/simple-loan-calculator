@@ -13,9 +13,9 @@ export class LoanCalculator extends PureComponent {
     const { value: periodInMonths } = firstPeriodOption;
 
     this.state = {
-      loanAmountInput: '0',
+      loanAmountInputValue: '0',
       loanAmount: 0,
-      downPaymentInput: '0',
+      downPaymentInputValue: '0',
       downPayment: 0,
       interestRate: INTEREST_RATE,
       periodInMonths,
@@ -26,11 +26,11 @@ export class LoanCalculator extends PureComponent {
   }
 
   getOnInputChange = (propertyName) => (e) => {
-    const { value, valueAsNumber, validity } = e.target;
+    const { value, validity } = e.target;
 
     this.setState({
-      [propertyName]: validity.valid ? valueAsNumber : NaN,
-      [`${propertyName}Input`]: value,
+      [propertyName]: validity.valid ? +value : NaN,
+      [`${propertyName}InputValue`]: value,
     });
   };
 
@@ -42,9 +42,9 @@ export class LoanCalculator extends PureComponent {
   render() {
     const {
       loanAmount,
-      loanAmountInput,
+      loanAmountInputValue,
       downPayment,
-      downPaymentInput,
+      downPaymentInputValue,
       interestRate,
       periodInMonths,
     } = this.state;
@@ -60,13 +60,13 @@ export class LoanCalculator extends PureComponent {
         <h1>Loan Calculator</h1>
 
         <div className="loan-calculator__field">
-          <label htmlFor="loanAmount">Loan Amount: </label>
+          <label htmlFor="loanAmountInput">Loan Amount: </label>
           <input
-            name="loanAmount"
+            name="loanAmountInput"
             type="number"
             min={0}
             step="any"
-            value={loanAmountInput}
+            value={loanAmountInputValue}
             onChange={this.onLoanAmountChange}
             required
           />
@@ -74,14 +74,14 @@ export class LoanCalculator extends PureComponent {
         </div>
 
         <div className="loan-calculator__field">
-          <label htmlFor="downPayment">Down Payment: </label>
+          <label htmlFor="downPaymentInput">Down Payment: </label>
           <input
-            name="downPayment"
+            name="downPaymentInput"
             type="number"
             min={0}
             max={100}
             step="any"
-            value={downPaymentInput}
+            value={downPaymentInputValue}
             onChange={this.onDownPaymentChange}
             required
           />
@@ -89,14 +89,14 @@ export class LoanCalculator extends PureComponent {
         </div>
 
         <div className="loan-calculator__field">
-          <label htmlFor="interest">Interest Rate: </label>
-          <input name="interest" type="number" value={interestRate} readOnly disabled />
+          <label htmlFor="interestInput">Interest Rate: </label>
+          <input name="interestInput" type="number" value={interestRate} readOnly disabled />
           <span> %</span>
         </div>
 
         <div className="loan-calculator__field">
-          <label htmlFor="period">Period: </label>
-          <select name="period" value={periodInMonths} onChange={this.onPeriodChange}>
+          <label htmlFor="periodSelect">Period: </label>
+          <select name="periodSelect" value={periodInMonths} onChange={this.onPeriodChange}>
             {annualPeriodOptions.map(({ name, value }) => (
               <option key={value} value={value}>
                 {name}
