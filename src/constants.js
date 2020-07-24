@@ -1,4 +1,4 @@
-export const CURRENCY = '$';
+export const CURRENCY = '€';
 
 export const INTEREST_RATE = 1.5;
 
